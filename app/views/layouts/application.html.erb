@@ -1,0 +1,41 @@
+<!DOCTYPE html>   
+ <html>   
+  <head>   
+    <title>Sale</title>   
+    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>   
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>   
+    <%= csrf_meta_tags %>   
+  </head>   
+  <body>   
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">   
+       <div class="container">   
+         <div class="navbar-header">   
+            <a class="navbar-brand" href="#">Sale</a>   
+         </div>   
+         <ul class="nav navbar-nav">    
+         </ul>   
+         <ul class="nav navbar-nav navbar-right">   
+            <li><%= link_to "All Sales", sales_path %></li>  
+            <li><%= link_to "All Products", products_path %></li>
+            <li><%= link_to "All Activities", activities_path %></li>
+            <% if user_signed_in? %>   
+            <li><%= link_to current_user.email, edit_user_registration_path %></li>   
+            <li><%= link_to "Log Out" , destroy_user_session_path, method: :delete %></li>   
+            <% else %>   
+            <li><%= link_to "Sign In", user_session_path %></li>   
+            <li><%= link_to "Register", new_user_registration_path %></li>   
+            <% end %>   
+         </ul>   
+       </div>   
+    </div>   
+    <div class="container">   
+       <% flash.each do |type, message| %>   
+       <div class="alert <%= flash_class type %> alert-dismissable">   
+         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>   
+         <p><%= message %></p>   
+       </div>   
+       <% end %>   
+       <%= yield %>   
+    </div>   
+  </body>   
+</html>   

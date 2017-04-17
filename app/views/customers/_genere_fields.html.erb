@@ -1,0 +1,5 @@
+<fieldset>  
+ <%= f.label :genere, "Genere" %>  
+ <%= f.collection_select :genere_id, Genere.all, :id, :name %>  
+ <%= f.hidden_field :_destroy %>   
+</fieldset>
